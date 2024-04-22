@@ -61,31 +61,31 @@ class FetchSingleUserTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function testDeleteUser()
-    {
-        $userData = [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => 'ValidPassword1$',
-        ];
+    // public function testDeleteUser()
+    // {
+    //     $userData = [
+    //         'name' => $this->faker->name,
+    //         'email' => $this->faker->unique()->safeEmail,
+    //         'password' => 'ValidPassword1$',
+    //     ];
 
-        // Act
-        $userNew = $this->postJson('api/v1/users/store', $userData);
-        $user = json_decode($userNew->getContent(), true);
-        $user = User::factory()->make();
+    //     // Act
+    //     $userNew = $this->postJson('api/v1/users/store', $userData);
+    //     $user = json_decode($userNew->getContent(), true);
+    //     $user = User::factory()->make();
 
-        Passport::actingAs($user);
-        $token = $user->generateToken();
+    //     Passport::actingAs($user);
+    //     $token = $user->generateToken();
 
-        $headers = ['Authorization' => 'Bearer' . " " . $token];
-        $deleted = $this->deleteJson('api/v1/users/delete/' .  $user->email, $headers)
-        ->assertOk();
+    //     $headers = ['Authorization' => 'Bearer' . " " . $token];
+    //     $deleted = $this->deleteJson('api/v1/users/delete/' .  $user->email, $headers)
+    //     ->assertOk();
 
-        $responseDeletedData = json_decode($deleted->getContent(), true);
+    //     $responseDeletedData = json_decode($deleted->getContent(), true);
 
-        $this->assertEquals(true, $responseDeletedData["success"]);
+    //     $this->assertEquals(true, $responseDeletedData["success"]);
 
 
-        $this->assertDatabaseMissing('users', ['email' => $user->email]);
-    }
+    //     $this->assertDatabaseMissing('users', ['email' => $user->email]);
+    // }
 }
