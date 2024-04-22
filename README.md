@@ -4,12 +4,18 @@ This is a PHP/Laravel simple User Managment System that uses Test driven Develop
 ## Running the Project
  To run the project, follow the following steps:
  1.     Download the folder and  unzip, add your db in the env, then run php artisan migrate.
- 2.     Run composer install to install all dependencies
- 3.     Add your database name in the .env file,
+ 2.     Add your database name in the .env file,
+ 3.     Run composer install to install all dependencies
  4.     Run php artisan migrate.
 The Users table and access token tables will be automatically generated
 
-Now you are good to go! 
+Now you are good to go!
+
+## Notes:
+If you are having issues with passport authentication, run the following commands:
+php artisan install:api --passport
+php artisan passport:client --personal
+php artisan passport:keys
  
 ## Suggestions
 If you discover a security vulnerability within this app or any of my open source projects, please send an e-mail to Femi Shotola via [femishotolaa@gmail.com](mailto:femishotolaa@gmail.com). All security vulnerabilities will be promptly addressed.
