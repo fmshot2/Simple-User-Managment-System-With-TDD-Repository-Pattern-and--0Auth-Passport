@@ -12,6 +12,7 @@ use App\Classes\ApiResponseClass;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -49,6 +50,8 @@ class UserController extends Controller
             $token = $user->createToken('LaravelAuthApp')->accessToken;
 
             DB::commit();
+            Log::info((array)$user);
+            Log::info('result');
             return ApiResponseClass::sendUserResponse(new UserResource($user), $token, 201);
         } catch (\Exception $ex) {
             throw $ex;
